@@ -1,14 +1,15 @@
 {
-  "name": "burguer",
+  "name": "burger-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jibm82/burguer.git"
+    "url": "git+https://github.com/jibm82/burger.git"
   },
   "keywords": [
     "Node",
@@ -19,9 +20,9 @@
   "author": "Jorge Baez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jibm82/burguer/issues"
+    "url": "https://github.com/jibm82/burger/issues"
   },
-  "homepage": "https://github.com/jibm82/burguer#readme",
+  "homepage": "https://github.com/jibm82/burger#readme",
   "dependencies": {
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
