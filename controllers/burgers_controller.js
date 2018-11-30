@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const burger = require("../models/burger");
+const db = require("../models");
 
 router.get("/", (req, res) => {
-  burger.all((data) => {
+  db.Burger.findAll({}).then(dbBurger => {
     let hbsObject = {
-      burgers: data
+      burgers: dbBurger
     };
 
     res.render("index", hbsObject);
@@ -13,16 +13,17 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
-  burger.insert(["burger_name"], [req.body.burger_name], (result) => {
-    res.json({ id: result.insertId });
+  db.Burger.create(req.body).then(dbBurger => {
+    res.json(dbBurger);
   });
 });
 
 router.put("/api/burgers/:id", function (req, res) {
-  let condition = `id = ${req.params.id}`;
-
-  burger.update({ devoured: true }, condition, (result) => {
-    if (result.changedRows == 0) {
+  db.Burger.update(
+    { devoured: true },
+    { where: { id: req.params.id } }
+  ).then((dbBurger, affected) => {
+    if (dbBurger[0] == 0) {
       return res.status(404).end();
     } else {
       res.status(200).end();
