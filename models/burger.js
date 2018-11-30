@@ -1,16 +1,17 @@
-const orm = require("../config/orm");
-const TABLE = "burgers";
-
-const burger = {
-  all: (callback) => {
-    orm.selectAll(TABLE, callback);
-  },
-  insert: (columns, values, callback) => {
-    orm.insertOne(TABLE, columns, values, callback);
-  },
-  update: (objColumnValues, condition, callback) => {
-    orm.updateOne(TABLE, objColumnValues, condition, callback);
-  }
+module.exports = function (sequelize, DataTypes) {
+  var Burger = sequelize.define("Burger", {
+    burger_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
+  });
+  return Burger;
 };
-
-module.exports = burger;
