@@ -14,7 +14,13 @@
 <body>
   <div class="background"></div>
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <main role="main" class="mt-auto">
+    <header class="masthead mb-auto">
+      <nav class="nav nav-masthead justify-content-center">
+        <a id="view-customers" class="nav-link" href="/api/customers">View Customers</a>
+      </nav>
+    </header>
+
+    <main role="main">
       <h1><span>Burger Tracker<span></h1>
       {{{ body }}}
     </main>

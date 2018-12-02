@@ -139,6 +139,22 @@ a:hover {
   background: #deb150;
 }
 
+.customer {
+  background: #333;
+  color: #fff;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.customer p {
+  padding: 10px;
+  margin: 0;
+}
+
+.customer small {
+  display: block;
+}
+
 footer {
   text-align: center;
 }

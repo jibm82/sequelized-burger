@@ -22,17 +22,17 @@ $(document).ready(() => {
     e.preventDefault();
     swal({
       heightAuto: false,
-      title: 'Who ate that burger?',
-      input: 'text',
+      title: "Who ate that burger?",
+      input: "text",
       inputAttributes: {
-        autocapitalize: 'off'
+        autocapitalize: "off"
       },
       showCancelButton: true,
-      confirmButtonText: 'Devour',
+      confirmButtonText: "Devour",
       showLoaderOnConfirm: true,
       preConfirm: (name) => {
         if (name === "") {
-          swal.showValidationMessage("You must provide the customer's name");
+          swal.showValidationMessage("You must provide the name");
           return false;
         } else {
           return name;
@@ -56,4 +56,39 @@ $(document).ready(() => {
       }
     })
   });
+
+  $("#view-customers").click(function (e) {
+    e.preventDefault();
+    let url = $(this).attr("href");
+    $.get(url, (customers) => {
+      swal({
+        title: "Customers",
+        html: customersHtml(customers),
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Close"
+      });
+    })
+  });
 });
+
+function customersHtml(customers) {
+  let html = `<div class="customers">`
+  customers.forEach((customer) => {
+    html += customerHtml(customer);
+  });
+  html += "</div>";
+
+  return html;
+}
+
+function customerHtml(customer) {
+  return `
+    <div class="customer">
+      <p>
+        ${customer.name}
+        <small>Burgers devoured: ${customer.BurgersCount}</small>
+      </p>
+    </div>
+  `;
+}
