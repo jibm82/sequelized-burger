@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-  var Burger = sequelize.define("Burger", {
+module.exports = (sequelize, DataTypes) => {
+  let Burger = sequelize.define("Burger", {
     burger_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,5 +13,10 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false
     }
   });
+
+  Burger.associate = models => {
+    Burger.belongsTo(models.Customer);
+  };
+
   return Burger;
 };
