@@ -1,4 +1,5 @@
 $(document).ready(() => {
+
   $(".create-form").submit(function (e) {
     e.preventDefault();
     let burgerName = $("#burger_name").val().trim();
@@ -19,15 +20,37 @@ $(document).ready(() => {
 
   $(".devour").click(function (e) {
     e.preventDefault();
+    swal({
+      title: 'Who ate that burger?',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Devour',
+      showLoaderOnConfirm: true,
+      preConfirm: (name) => {
+        if (name === "") {
+          swal.showValidationMessage("You must provide the customer's name");
+          return false;
+        } else {
+          return name;
+        }
+      },
+      allowOutsideClick: () => !swal.isLoading()
+    }).then((result) => {
+      let id = $(this).attr("data-id");
+      let url = `/api/burgers/${id}`;
 
-    let id = $(this).attr("data-id");
-    let url = `/api/burgers/${id}`;
-
-    $.ajax({
-      method: "PUT",
-      url
-    }).then(() => {
-      location.reload();
-    });
+      $.ajax({
+        method: "PUT",
+        url,
+        data: {
+          name: result.value
+        }
+      }).then(() => {
+        location.reload();
+      });
+    })
   });
 });
