@@ -82,12 +82,13 @@ a:hover {
 }
 
 .burger {
+  background: rgba(0,0,0,0.4);
   border-bottom: 1px dashed #fff;
   padding: 5px 0px;
 }
 
 .burger:hover {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.6);
 }
 
 .burger:last-child{
@@ -103,6 +104,10 @@ a:hover {
   border-radius: 0px;
 }
 
+.burger small {
+  display: block;
+}
+
 .box-form {
   margin: 20px 0px;
   background: #18191e;
@@ -110,13 +115,28 @@ a:hover {
   padding: 10px 10%;
 }
 
-.box-form button{
+.box-form button {
   background: transparent;
   border-radius: 0px;
   border: 1px solid #deb150;
   color: #deb150;
   cursor: pointer;
   padding: 5px 50px;
+}
+
+.swal2-modal.swal2-popup {
+  background: #18191e !important;
+  border: #202127 solid 20px;
+  border-radius: 0px;
+}
+
+.swal2-modal.swal2-popup .swal2-title {
+  color: #deb150;
+  font-weight: normal;
+}
+
+.swal2-modal.swal2-popup .swal2-styled.swal2-confirm {
+  background: #deb150;
 }
 
 footer {

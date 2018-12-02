@@ -1,6 +1,9 @@
 <div class="burger d-flex w-100 justify-content-between">
   <p>
     {{burger_name}}
+    {{#if devoured}}
+    <small>Eaten by {{Customer.name}}</small>
+    {{/if}}
   </p>
   {{#unless devoured}}
   <button class="btn btn-dark devour" data-id="{{id}}">Devour</button>

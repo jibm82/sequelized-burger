@@ -21,6 +21,7 @@ $(document).ready(() => {
   $(".devour").click(function (e) {
     e.preventDefault();
     swal({
+      heightAuto: false,
       title: 'Who ate that burger?',
       input: 'text',
       inputAttributes: {
@@ -39,18 +40,20 @@ $(document).ready(() => {
       },
       allowOutsideClick: () => !swal.isLoading()
     }).then((result) => {
-      let id = $(this).attr("data-id");
-      let url = `/api/burgers/${id}`;
+      if (result.value) {
+        let id = $(this).attr("data-id");
+        let url = `/api/burgers/${id}`;
 
-      $.ajax({
-        method: "PUT",
-        url,
-        data: {
-          name: result.value
-        }
-      }).then(() => {
-        location.reload();
-      });
+        $.ajax({
+          method: "PUT",
+          url,
+          data: {
+            name: result.value
+          }
+        }).then(() => {
+          location.reload();
+        });
+      }
     })
   });
 });
